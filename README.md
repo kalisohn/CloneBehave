@@ -3,7 +3,7 @@ Enables a very fast deep clone engine for C#
 
 ## Introduction
 
-Clone Behave! uses reflection with the help of ![fasterflect]("https://fasterflect.codeplex.com/") that offers methods for creating delegates and that improves reflection performance.
+Clone Behave! uses reflection with the help of ![fasterflect]("https://fasterflect.codeplex.com/") that offers methods for creating delegates and that improves reflection performance. It also contains some parts from https://github.com/Burtsev-Alexey/net-object-deep-copy/blob/master/ObjectExtensions.cs (Thanks for the inspiration!)
 It works with reflection caches and is safe against circular references. The special thing about Clone Behave! is the possibility of changing the behaviour of the cloned code by using annotations. E.g. you can define that fields to be cloned memberwise instead of deep cloned.
 
 
