@@ -50,7 +50,14 @@ The Shallow DeepCloneBehaviour will perform a simple Shallow Copy of the defined
     {
       public string Name { get; set; }
       
-      public Person BestFriend { get; set; }
+      [DeepClone(DeepCloneBehavior.Shallow)]
+      private Person _bestFriend;
+      
+      public Person BestFriend 
+      { 
+        get { return _bestFriend; }
+        set { _bestFriend = value; }
+      }
     
       public Person(string name) 
       {
@@ -60,7 +67,6 @@ The Shallow DeepCloneBehaviour will perform a simple Shallow Copy of the defined
 
     public class Address 
     {
-      [DeepClone(DeepCloneBehavior.Shallow)]
       private Person _personLivingHere;
       
       public Person PersonLivingHere 
