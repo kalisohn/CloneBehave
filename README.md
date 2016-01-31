@@ -1,5 +1,5 @@
 # Clone Behave!
-Enables a performant and flexible deep clone engine for C#
+A performant and flexible deep clone engine for C#
 
 ## Introduction
 
