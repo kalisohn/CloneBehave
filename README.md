@@ -1,5 +1,6 @@
 # Clone Behave!
 A performant and flexible deep clone engine for C#
+![NuGet Package]("https://www.nuget.org/packages/Clone.Behave/")
 
 ## Introduction
 
