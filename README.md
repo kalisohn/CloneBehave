@@ -1,11 +1,11 @@
 # Clone Behave!
 A performant and flexible deep clone engine for C#
 
-Download as ![NuGet Package]("https://www.nuget.org/packages/Clone.Behave/")
+Download as [NuGet Package](https://www.nuget.org/packages/Clone.Behave/)
 
 ## Introduction
 
-Clone Behave! uses reflection with the help of ![fasterflect]("https://fasterflect.codeplex.com/") that offers methods for creating delegates and that improves reflection performance. It also contains some parts from https://github.com/Burtsev-Alexey/net-object-deep-copy/blob/master/ObjectExtensions.cs (Thanks for the inspiration!)
+Clone Behave! uses reflection with the help of [fasterflect](https://fasterflect.codeplex.com/) that offers methods for creating delegates and that improves reflection performance. It also contains some parts from https://github.com/Burtsev-Alexey/net-object-deep-copy/blob/master/ObjectExtensions.cs (Thanks for the inspiration!)
 It works with reflection caches and is safe against circular references. The special thing about Clone Behave! is the possibility of changing the behaviour of the cloned code by using annotations. E.g. you can define that fields to be cloned memberwise instead of deep cloned.
 Due to object and type caches the cloner will be even faster if you clone your code for a second run.
 
@@ -26,6 +26,7 @@ Clone Behave! lets you change the cloning behaviour of the code you want to clon
 
 The SetToDefault Attribute sets the field to its default value after the cloning process. (E.g. null or 0)
 
+```c#
     public class Address 
     {
       [DeepClone(DeepCloneBehavior.SetToDefault)]
@@ -42,12 +43,13 @@ The SetToDefault Attribute sets the field to its default value after the cloning
     adr.PersonLivingHere = new Person("John");
     
     Address adrClone = adr.Clone(); //adrClone.PersonLivingHere will be null
-    
+```    
     
 ### DeepCloneBehaviour: Shallow
 
 The Shallow DeepCloneBehaviour will perform a simple Shallow Copy of the defined field instead of a deep clone.
 
+```c#
     public class Person 
     {
       public string Name { get; set; }
@@ -85,13 +87,13 @@ The Shallow DeepCloneBehaviour will perform a simple Shallow Copy of the defined
     Address adrClone = adr.Clone();
     adr.PersonLivingHere == adrClone.PersonLivingHere //false
     adr.PersonLivingHere.BestFriend == adrClone.PersonLivingHere.BestFriend //true
-
+```
 ### DeepCloneBehaviour: UpdateReferences
 
 Will perform a default deep clone but will put the cloning of the defined field to the end of the cloning process. 
 That helps especially in situations like linked lists to avoid a stackoverflow because it will clone the object itself without cloning the UpdateReference marked field.
 At the end of the cloning process it will then just fill the references with the already cloned objects.
-
+```c#
     public class Person 
     {
       [DeepClone(DeepCloneBehavior.UpdateReferences)]
@@ -115,4 +117,4 @@ At the end of the cloning process it will then just fill the references with the
     
     Person p = new Person("John");
     p.Clone();
-    
+```
